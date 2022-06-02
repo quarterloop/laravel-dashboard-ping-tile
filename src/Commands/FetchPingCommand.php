@@ -1,28 +1,28 @@
 <?php
 
-namespace Quarterloop\LoadTimeTile\Commands;
+namespace Quarterloop\PingTile\Commands;
 
 use Illuminate\Console\Command;
-use Quarterloop\LoadTimeTile\Services\LoadTimeAPI;
-use Quarterloop\LoadTimeTile\LoadTimeStore;
+use Quarterloop\PingTile\Services\PingAPI;
+use Quarterloop\PingTile\PingStore;
 
-class FetchLoadTimeCommand extends Command
+class FetchPingCommand extends Command
 {
-    protected $signature = 'dashboard:fetch-load-time-data';
+    protected $signature = 'dashboard:fetch-ping-data';
 
-    protected $description = 'Fetch load time data';
+    protected $description = 'Fetch ping data';
 
-    public function handle(LoadTimeAPI $loadTime_api)
+    public function handle(PingAPI $ping_api)
     {
 
-        $this->info('Fetching load time data ...');
+        $this->info('Fetching ping data ...');
 
-        $loadTime = $loadTime_api::getLoadTime(
+        $ping = $ping_api::getPing(
             config('dashboard.tiles.hosting.url'),
             config('dashboard.tiles.load-time.key'),
         );
 
-        LoadTimeStore::make()->setData($loadTime);
+        PingStore::make()->setData($ping);
 
         $this->info('Stored data ...');
 
