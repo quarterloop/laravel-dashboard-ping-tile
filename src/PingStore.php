@@ -1,12 +1,12 @@
 <?php
 
-namespace Quarterloop\LoadTimeTile;
+namespace Quarterloop\PingTile;
 
 use Spatie\Dashboard\Models\Tile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class LoadTimeStore
+class PingStore
 {
     private Tile $tile;
 
@@ -17,24 +17,24 @@ class LoadTimeStore
 
     public function __construct()
     {
-        $this->tile = Tile::firstOrCreateForName("loadTime");
+        $this->tile = Tile::firstOrCreateForName("ping");
     }
 
     public function setData(array $data): self
     {
-        $this->tile->putData('loadTime', $data);
+        $this->tile->putData('ping', $data);
 
         return $this;
     }
 
     public function getData(): array
     {
-        return$this->tile->getData('loadTime') ?? [];
+        return$this->tile->getData('ping') ?? [];
     }
 
     public function getLastUpdateTime()
     {
-        $tileName = 'loadTime';
+        $tileName = 'ping';
 
         $queryTime = DB::table('dashboard_tiles')->select('updated_at')->where('name', '=', $tileName)->get();
 
@@ -45,7 +45,7 @@ class LoadTimeStore
 
     public function getLastUpdateDate()
     {
-        $tileName = 'loadTime';
+        $tileName = 'ping';
 
         $queryDate = DB::table('dashboard_tiles')->select('updated_at')->where('name', '=', $tileName)->get();
 
