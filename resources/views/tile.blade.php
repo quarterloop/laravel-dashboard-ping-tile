@@ -7,21 +7,17 @@
           </svg>
         </a>
 
-        <h1 class="font-medium text-dimmed text-sm uppercase tracking-wide tabular-nums text-center">Load Time</h1>
+        <h1 class="font-medium text-dimmed text-sm uppercase tracking-wide tabular-nums text-center">Ping</h1>
         <p class="text-dimmed lowercase tracking-wide tabular-nums text-center mr-auto ml-auto mb-3 w-full"
            style="font-size: 12px;">
            {{ $lastUpdateDate }} - {{ $lastUpdateTime }}
         </p>
 
         <div class="flex flex-row flex-wrap justify-between">
-          @foreach($times as $time)
-            <div class="flex flex-col w-1/3 min-w-min">
+          @foreach($pings as $ping)
+            <div class="flex flex-col min-w-min">
               <div class="flex flex-row">
-                <div class="font-small text-xs text-center mb-1">{{ $time['dns'] }} ms</div>
-                <div class="font-small text-xs text-center mb-1">{{ $time['connect'] }} ms</div>
-                <div class="font-small text-xs text-center mb-1">{{ $time['send'] }} ms</div>
-                <div class="font-small text-xs text-center mb-1">{{ $time['wait'] }} ms</div>
-                <div class="font-small text-xs text-center mb-1">{{ $time['total'] }} ms</div>
+                <div class="font-small text-xs text-center mb-1">{{ $ping['avg'] }} ms</div>
               </div>
               <div class="font-small text-xs text-center">{{ $time['country'] }}</div>
             </div>
