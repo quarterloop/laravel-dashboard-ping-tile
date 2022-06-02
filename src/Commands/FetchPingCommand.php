@@ -19,7 +19,7 @@ class FetchPingCommand extends Command
 
         $ping = $ping_api::getPing(
             config('dashboard.tiles.hosting.url'),
-            config('dashboard.tiles.load-time.key'),
+            config('dashboard.tiles.geekflare.key'),
         );
 
         PingStore::make()->setData($ping);
