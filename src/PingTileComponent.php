@@ -1,11 +1,11 @@
 <?php
 
-namespace Quarterloop\LoadTimeTile;
+namespace Quarterloop\PingTile;
 
 use Livewire\Component;
 use Illuminate\Support\DB;
 
-class LoadTimeTileComponent extends Component
+class PingTileComponent extends Component
 {
 
     public $position;
@@ -19,13 +19,13 @@ class LoadTimeTileComponent extends Component
     public function render()
     {
 
-      $loadTimeStore = LoadTimeStore::make();
+      $pingStore = PingStore::make();
 
-        return view('dashboard-load-time-tile::tile', [
+        return view('dashboard-ping-tile::tile', [
             'website'         => config('dashboard.tiles.hosting.url'),
-            'times'            => $loadTimeStore->getData()['data'],
-            'lastUpdateTime'  => date('H:i:s', strtotime($loadTimeStore->getLastUpdateTime())),
-            'lastUpdateDate'  => date('d.m.Y', strtotime($loadTimeStore->getLastUpdateDate())),
+            'pings'           => $pingStore->getData()['data'],
+            'lastUpdateTime'  => date('H:i:s', strtotime($pingStore->getLastUpdateTime())),
+            'lastUpdateDate'  => date('d.m.Y', strtotime($pingStore->getLastUpdateDate())),
         ]);
     }
 }
