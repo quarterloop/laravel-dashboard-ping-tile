@@ -13,14 +13,15 @@
            {{ $lastUpdateDate }} - {{ $lastUpdateTime }}
         </p>
 
-        <div class="flex flex-row flex-wrap justify-between">
-          @foreach($pings as $ping)
-            <div class="flex flex-col min-w-min p-1 border border-white border-dimmed rounded" style="width: calc(100% / 3 - 1em)">
-              <div class="font-small text-xs text-center mb-3">{{ $ping['latency'] }} ms</div>
-              <div class="font-small text-xs text-center">{{ $ping['country'] }}</div>
-            </div>
-          @endforeach
-        </div>
+        @foreach($pings as $ping)
+          <div class="flex flex-row justify-between pb-1">
+            <div class="w-9/12 p-1 text-xs">{{ $ping['country'] }}</div>
+            <div class="w-3/12 p-1 text-xs text-center rounded
+                        @if( $ping['latency'] <= 100 ) bg-yellow-700  @endif
+                        @if( $ping['latency'] >= 100 ) bg-red-700     @endif
+                        @if( $ping['latency'] <= 50 )  bg-green-700   @endif">{{ $ping['latency'] }} ms</div>
+          </div>
+        @endforeach
 
     </div>
 </x-dashboard-tile>
