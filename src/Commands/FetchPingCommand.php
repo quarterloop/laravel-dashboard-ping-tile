@@ -5,6 +5,7 @@ namespace Quarterloop\PingTile\Commands;
 use Illuminate\Console\Command;
 use Quarterloop\PingTile\Services\PingAPI;
 use Quarterloop\PingTile\PingStore;
+use Session;
 
 class FetchPingCommand extends Command
 {
@@ -18,7 +19,7 @@ class FetchPingCommand extends Command
         $this->info('Fetching ping data ...');
 
         $ping = $ping_api::getPing(
-            config('dashboard.tiles.hosting.url'),
+            Session::get('website'),
             config('dashboard.tiles.geekflare.key'),
         );
 
