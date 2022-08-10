@@ -23,7 +23,7 @@ class PingTileComponent extends Component
 
         return view('dashboard-ping-tile::tile', [
             'website'         => config('dashboard.tiles.hosting.url'),
-            'ping'            => $pingStore->getData()['data'],
+            'ping'            => $pingStore->getData()['data']['latency'],
             'lastUpdateTime'  => date('H:i:s', strtotime($pingStore->getLastUpdateTime())),
             'lastUpdateDate'  => date('d.m.Y', strtotime($pingStore->getLastUpdateDate())),
         ]);
